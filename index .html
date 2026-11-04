@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>مغامرة الشبكات | تقنية المعلومات - الصف التاسع</title>
+<style>
+:root{--bg:#081426;--panel:#10243c;--panel2:#142d49;--line:#294766;--text:#eef6ff;--muted:#a9bfd5;--cyan:#48d6df;--blue:#5895ff;--gold:#ffd166;--green:#55d6a0;--red:#ff7b86}
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:radial-gradient(circle at 15% 0%,#17385a 0,transparent 32%),linear-gradient(145deg,#071321,#0c1c31 55%,#101c36);color:var(--text);min-height:100vh}
+button,input{font:inherit}button{cursor:pointer;border:0;border-radius:13px;padding:12px 18px;font-weight:bold;transition:.2s}button:hover{transform:translateY(-2px);filter:brightness(1.08)}button:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.wrap{max-width:1180px;margin:auto;padding:22px}.top{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:22px}.brand{display:flex;gap:13px;align-items:center}.logo{width:55px;height:55px;border-radius:17px;background:linear-gradient(135deg,var(--cyan),var(--blue));display:grid;place-items:center;font-size:27px;box-shadow:0 8px 25px #48d6df33}.brand h1{font-size:clamp(19px,3vw,27px);margin:0}.brand p{color:var(--muted);margin:5px 0 0;font-size:13px}.tag{border:1px solid #315779;color:#b9eefa;padding:9px 14px;border-radius:30px;font-size:13px}
+.panel{background:linear-gradient(145deg,#112943ed,#0d2036ed);border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:0 15px 45px #0003;margin-bottom:18px}.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:18px;align-items:center}.hero h2{font-size:clamp(26px,4vw,42px);line-height:1.35;margin:0 0 12px}.hero h2 span{color:var(--cyan)}.lead{color:var(--muted);line-height:1.9}.art{min-height:210px;border-radius:20px;background:radial-gradient(circle at 50% 40%,#2e7393,#18375c 48%,#10233d);display:grid;place-items:center;font-size:90px;position:relative;overflow:hidden}.art:after{content:"";position:absolute;width:230px;height:230px;border:1px solid #9beaf555;border-radius:50%;box-shadow:0 0 0 25px #9beaf511,0 0 0 55px #9beaf508}
+.field{display:flex;flex-direction:column;gap:8px;margin:14px 0}.field label{color:#c5d8e9;font-size:14px}.field input{background:#08192b;border:1px solid #355575;color:white;border-radius:12px;padding:14px;outline:none}.field input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #48d6df22}
+.primary{background:linear-gradient(100deg,#22b9c7,#4b8fff);color:#041728}.secondary{background:#203d5b;color:#e8f4ff;border:1px solid #426383}.gold{background:linear-gradient(100deg,#ffcf68,#f0a83c);color:#382407}.danger{background:#5a2634;color:#ffe4e7}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.stage{background:#0b1d31;border:1px solid #294865;border-radius:17px;padding:15px;min-height:130px}.stage .num{width:33px;height:33px;border-radius:10px;background:#1e4a68;color:#83e8ee;display:grid;place-items:center;font-weight:bold;margin-bottom:12px}.stage strong{display:block;margin-bottom:7px}.stage small{color:var(--muted);line-height:1.5}.stage.done{border-color:#3fba91;background:#10342f}.stage.current{border-color:var(--cyan);box-shadow:0 0 0 2px #48d6df22}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}.stat{background:#0a1c30;border:1px solid #294865;border-radius:15px;padding:14px}.stat small{display:block;color:var(--muted);margin-bottom:8px}.stat b{font-size:23px;color:#fff}.bar{height:9px;background:#071526;border-radius:20px;overflow:hidden;margin-top:12px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--blue));width:0;transition:.35s}
+.question-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}.pill{background:#1b3b58;color:#aeeaf0;padding:7px 11px;border-radius:20px;font-size:12px}.qtext{font-size:22px;line-height:1.7;margin:24px 0}.answers{display:grid;grid-template-columns:1fr 1fr;gap:12px}.answer{background:#102a45;border:1px solid #365675;color:#eaf4ff;text-align:right;min-height:62px;line-height:1.5}.answer.selected{border-color:var(--cyan);background:#164257}.answer.correct{border-color:var(--green);background:#123c35}.answer.wrong{border-color:var(--red);background:#482633}.feedback{margin-top:16px;padding:14px;border-radius:13px;line-height:1.8;display:none}.feedback.show{display:block}.feedback.good{background:#123d35;border:1px solid #338b70}.feedback.bad{background:#452632;border:1px solid #a94e60}
+.actions{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:20px}.hidden{display:none!important}.center{text-align:center}.bigscore{font-size:52px;color:var(--gold);font-weight:bold;margin:8px}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:500px}th,td{padding:12px;border-bottom:1px solid #29445f;text-align:right}th{color:#9fe9ee}td{color:#e7f0fa}.note{font-size:12px;color:var(--muted);line-height:1.7}.medal{font-size:34px}.footer{text-align:center;color:#7895b1;font-size:12px;padding:18px}
+@media(max-width:800px){.hero{grid-template-columns:1fr}.art{min-height:140px}.grid{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.wrap{padding:12px}.panel{padding:17px}.answers{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.qtext{font-size:19px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+ <div class="brand"><div class="logo">🌐</div><div><h1>مغامرة الشبكات</h1><p>لعبة تفاعلية في تقنية المعلومات · الصف التاسع</p></div></div>
+ <div class="tag">الوحدة الثانية: الشبكات</div>
+</header>
+
+<section id="start" class="panel">
+ <div class="hero">
+  <div><span class="pill">🎮 تعلّم · حلّل · اجمع النقاط</span><h2>هل أنت مستعد لتصبح <span>خبير شبكات؟</span></h2>
+   <p class="lead">انتقل بين مراحل الوحدة، وحل مواقف وتحديات تتطلب التفكير والتحليل واتخاذ القرار. اجمع النقاط وافتح الميداليات، ثم راجع نتيجتك في لوحة المعلم.</p>
+   <div class="field"><label for="student">اسم الطالب</label><input id="student" maxlength="80" placeholder="اكتب اسمك هنا"></div>
+   <div class="field"><label for="classroom">الصف / الشعبة (اختياري)</label><input id="classroom" maxlength="30" placeholder="مثال: التاسع / ١"></div>
+   <button class="primary" onclick="startGame()">ابدأ المغامرة ←</button>
+   <button class="secondary" onclick="showBoard()" style="margin-right:7px">لوحة المعلم</button>
+  </div><div class="art">🛰️</div>
+ </div>
+</section>
+
+<section id="game" class="hidden">
+ <div class="panel">
+  <div class="question-head"><div><span class="pill" id="stageLabel">المرحلة الأولى</span> <span class="pill" id="typeLabel">تحدي تفكير</span></div><span class="pill" id="studentLabel"></span></div>
+  <div class="stats">
+   <div class="stat"><small>مجموع نقاطك</small><b id="score">٠</b></div>
+   <div class="stat"><small>السؤال</small><b id="qnumber">١ / ٨</b></div>
+   <div class="stat"><small>الإجابات الصحيحة</small><b id="rightCount">٠</b></div>
+   <div class="stat"><small>نسبة التقدم</small><b id="progressText">٠٪</b></div>
+  </div>
+  <div class="bar"><i id="progress"></i></div>
+  <h2 class="qtext" id="question"></h2>
+  <div class="answers" id="answers"></div>
+  <div class="feedback" id="feedback"></div>
+  <div class="actions"><button class="secondary" id="prev" onclick="previousQuestion()">→ السابق</button><button class="primary" id="next" onclick="nextQuestion()" disabled>تحقق من الإجابة</button></div>
+ </div>
+ <div class="panel"><h3 style="margin-top:0">خريطة المراحل</h3><div class="grid" id="stageMap"></div></div>
+</section>
+
+<section id="result" class="hidden">
+ <div class="panel center">
+  <div class="medal" id="medal">🏆</div><h2>أحسنت! أنهيت مغامرة الشبكات</h2><p class="lead" id="resultName"></p>
+  <div class="bigscore" id="finalScore">٠</div><p>نقطة</p>
+  <div class="stats"><div class="stat"><small>الإجابات الصحيحة</small><b id="finalRight">٠</b></div><div class="stat"><small>عدد الأسئلة</small><b id="finalTotal">٤٠</b></div><div class="stat"><small>النسبة</small><b id="finalPercent">٠٪</b></div><div class="stat"><small>الميداليات</small><b id="finalMedals">٠</b></div></div>
+  <h3>تفصيل الدرجات حسب المرحلة</h3><div class="tablewrap"><table><thead><tr><th>المرحلة</th><th>الإجابات الصحيحة</th><th>النقاط</th></tr></thead><tbody id="stageResults"></tbody></table></div>
+  <div class="actions"><button class="primary" onclick="newStudent()">طالب جديد</button><button class="secondary" onclick="showBoard()">لوحة المعلم</button><button class="gold" onclick="window.print()">طباعة النتيجة</button></div>
+ </div>
+</section>
+
+<section id="board" class="hidden">
+ <div class="panel"><div class="question-head"><h2 style="margin:0">📊 لوحة المعلم – سجل النتائج</h2><button class="secondary" onclick="backHome()">العودة للرئيسية</button></div>
+ <p class="lead">تُحفظ النتائج على الجهاز والمتصفح نفسه. يمكن تصدير السجل بصيغة CSV لفتحه في Excel.</p>
+ <div class="stats"><div class="stat"><small>عدد المشاركات</small><b id="boardCount">٠</b></div><div class="stat"><small>أعلى نتيجة</small><b id="boardTop">٠</b></div><div class="stat"><small>متوسط النقاط</small><b id="boardAvg">٠</b></div><div class="stat"><small>مجموع النقاط</small><b id="boardSum">٠</b></div></div>
+ <div class="tablewrap"><table><thead><tr><th>الترتيب</th><th>اسم الطالب</th><th>الصف/الشعبة</th><th>النقاط</th><th>النسبة</th><th>التاريخ</th></tr></thead><tbody id="boardRows"></tbody></table></div>
+ <div class="actions"><button class="primary" onclick="exportCSV()">⬇ تصدير النتائج Excel (CSV)</button><button class="danger" onclick="clearBoard()">مسح سجل النتائج</button></div>
+ <p class="note">تنبيه: لوحة المعلم محلية على هذا المتصفح؛ لا تُرسل النتائج تلقائياً إلى جهاز آخر. لجمع نتائج عدة أجهزة، صدّر ملف CSV من كل جهاز واجمع الملفات لدى المعلم.</p>
+ </div>
+</section>
+<div class="footer">إعداد تعليمي تفاعلي · مادة تقنية المعلومات · الصف التاسع</div>
+</div>
+<script>
+const stages=[
+{title:"مقدمة في الشبكات",icon:"🖧",qs:[
+["تعمل مجموعة من الحواسيب في مختبر المدرسة، ويحتاج الطلبة إلى مشاركة الملفات والطابعة. ما الحل الأنسب؟",["فصل الأجهزة عن بعضها","إنشاء شبكة محلية تربط الأجهزة","شراء شاشة لكل جهاز","إيقاف مشاركة الموارد"],1,"إنشاء شبكة محلية يتيح تبادل البيانات ومشاركة الموارد بين الأجهزة."],
+["لاحظت أن نقل ملف بين جهازين متصلين بالشبكة أسرع من إرساله عبر الإنترنت في هذا الموقف. ما التفسير الأقرب؟",["لأن الاتصال المحلي قد لا يحتاج المرور عبر الإنترنت","لأن الملفات المحلية لا تحتوي بيانات","لأن الإنترنت لا ينقل الملفات","لأن الشاشة أسرع"],0,"الاتصال داخل الشبكة المحلية يمكن أن يتم مباشرة ضمن الشبكة دون الاعتماد على الإنترنت."],
+["تريد إدارة المدرسة ربط أجهزة مبنى واحد ضمن نطاق محدود. أي نوع شبكة يناسب ذلك غالباً؟",["شبكة محلية LAN","شبكة واسعة WAN","شبكة عالمية فقط","لا يمكن ربطها"],0,"الشبكة المحلية تناسب ربط الأجهزة في مساحة جغرافية محدودة مثل مبنى أو مختبر."],
+["إذا تعطل جهاز واحد في شبكة نجمية بينما بقيت بقية الأجهزة تعمل، فما الاستنتاج؟",["توقف الشبكة كلها حتماً","قد يستمر عمل بقية الأجهزة لأن لكل جهاز اتصالاً مركزياً","تتحول الشبكة إلى الإنترنت","تُحذف الملفات تلقائياً"],1,"في الطوبولوجيا النجمية غالباً لا يؤدي تعطل جهاز طرفي واحد إلى توقف بقية الأجهزة."],
+["مدرسة لها مبنيان متباعدان في منطقتين مختلفتين وتريد ربط شبكتيهما. ما العامل الذي ينبغي دراسته أولاً؟",["لون أجهزة الحاسوب","المسافة ووسيلة الاتصال المناسبة","نوع الطاولات","حجم الخط"],1,"المسافة الجغرافية تؤثر في اختيار نوع الربط ووسيلة الاتصال."],
+["أي موقف يوضح فائدة مشاركة الموارد عبر الشبكة؟",["كل طالب يطبع من طابعة مستقلة","عدة أجهزة تستخدم طابعة شبكية واحدة وفق الصلاحيات","إغلاق الطابعة","نسخ الشاشة يدوياً"],1,"مشاركة الطابعة تقلل الحاجة إلى أجهزة منفصلة وتيسر استخدامها."],
+["يريد مسؤول المختبر تقليل وصول الطلبة غير المصرح لهم إلى مجلد إداري مشترك. ما الإجراء الأفضل؟",["إتاحة المجلد للجميع","تحديد صلاحيات الوصول للمجلد","إزالة اسم المجلد","إيقاف جميع الأجهزة"],1,"تحديد الصلاحيات يضمن وصول المستخدمين المصرح لهم فقط إلى الموارد."],
+["أمامك شبكة صغيرة في قاعة واحدة. ما القرار الأكثر منطقية قبل شراء معداتها؟",["تحديد عدد الأجهزة والموارد المراد مشاركتها","شراء أكبر عدد من الأجهزة دون تخطيط","اختيار الأجهزة حسب ألوانها","توصيلها عشوائياً"],0,"التخطيط لعدد الأجهزة والاحتياجات يساعد على اختيار بنية مناسبة دون هدر."]
+]},
+{title:"برنامج محاكاة الشبكات",icon:"🧪",qs:[
+["قبل تنفيذ شبكة حقيقية في المختبر، يريد الطالب اختبار نجاح الاتصال بين الأجهزة دون شراء المعدات. ما الخيار الأنسب؟",["برنامج محاكاة الشبكات","برنامج تحرير الصور","مشغل الفيديو","آلة حاسبة"],0,"المحاكاة تسمح ببناء نموذج افتراضي واختبار الإعدادات قبل التطبيق الفعلي."],
+["أنشأ طالب شبكة افتراضية ووصل جهازين، لكنه لم يختبر الاتصال بينهما. ما الخطوة التي تكشف إن كان الإعداد صحيحاً؟",["تغيير خلفية البرنامج","تنفيذ اختبار اتصال بين الجهازين","حذف الأجهزة","إغلاق المشروع دون حفظ"],1,"اختبار الاتصال يساعد على التحقق من صحة التوصيلات والإعدادات."],
+["في المحاكي، جهازان لا يتبادلان البيانات رغم وجود اتصال مرئي بينهما. ما أول شيء ينبغي فحصه؟",["إعدادات عناوين الشبكة والتوصيل","حجم أيقونة الجهاز","لون مساحة العمل","اسم ملف المشروع فقط"],0,"قد يكون السبب في إعدادات العناوين أو نوع التوصيل، لذلك تُفحص قبل تغيير أمور غير مرتبطة."],
+["ما الفائدة التعليمية الأهم من استخدام المحاكاة؟",["إلغاء الحاجة إلى فهم الشبكات","تجربة سيناريوهات متعددة بأمان قبل التنفيذ الحقيقي","زيادة سرعة الإنترنت الحقيقي","حفظ كل الملفات تلقائياً"],1,"المحاكاة تتيح التجربة والتعديل واكتشاف الأخطاء في بيئة افتراضية."],
+["طالب يريد مقارنة تصميمين للشبكة قبل اختيار أحدهما. كيف يستفيد من المحاكي؟",["يبني التصميمين ويختبر الأداء والاتصال في كل منهما","يختار عشوائياً","يكتفي بصورة للشبكة","يحذف التصميمين"],0,"المقارنة العملية بين النماذج تساعد على اختيار التصميم الأنسب."],
+["إذا نجح الاتصال في المحاكي، فهل يعني ذلك ضمان نجاح الشبكة الحقيقية 100%؟",["نعم دائماً","لا، لأن الواقع قد يتضمن عوامل مادية وأخطاء تنفيذ","نعم دون حاجة للفحص","لا يمكن للمحاكاة اختبار أي شيء"],1,"المحاكاة مفيدة لكنها لا تمثل كل الظروف الواقعية مثل جودة الكابلات والتداخل والأجهزة."],
+["غيّر الطالب نوع الكابل في المحاكي ثم لاحظ تغير حالة الاتصال. ماذا يتعلم من ذلك؟",["العلاقة بين نوع التوصيل ونجاح الاتصال","أن الكابلات لا تؤثر","أن أسماء الأجهزة أهم من التوصيل","أن المحاكي لا يستجيب"],0,"تجربة أنواع التوصيل توضح أثر اختيار الوسيلة الصحيحة في الاتصال."],
+["يريد الطالب الاحتفاظ بتصميم الشبكة لاستكماله لاحقاً. ما السلوك الصحيح؟",["حفظ ملف المشروع باسم واضح","إغلاق البرنامج دون حفظ","التقاط صورة فقط وحذف المشروع","إعادة تشغيل الحاسوب"],0,"حفظ المشروع يسمح بالعودة إلى التصميم وتعديله لاحقاً."]
+]},
+{title:"الربط بين الشبكات",icon:"🔗",qs:[
+["لدى المدرسة شبكتان محليتان في مبنيين، وتحتاجان إلى تبادل البيانات. ما المطلوب من حيث المبدأ؟",["وسيلة أو جهاز يربط الشبكتين ويوجه البيانات بينهما","فصل جميع الكابلات","تغيير أسماء المستخدمين فقط","إلغاء عناوين الشبكة"],0,"يحتاج ربط الشبكات إلى وسيلة مناسبة لتمرير البيانات بين الشبكات."],
+["تريد مؤسسة ربط فروعها في مدن مختلفة. أي وصف أقرب لهذا الاحتياج؟",["ربط شبكات محلية ضمن نطاق جغرافي واسع","شبكة داخل غرفة واحدة فقط","توصيل لوحة مفاتيح","مشاركة شاشة واحدة"],0,"ربط الفروع المتباعدة يتطلب اتصالاً يمتد عبر نطاق جغرافي واسع."],
+["وصل فني شبكتين لكن الأجهزة لا تتبادل البيانات. أي إجراء تشخيصي منطقي؟",["التحقق من إعدادات الربط والعناوين ومسارات الاتصال","تغيير لون الأجهزة","حذف جميع الملفات","زيادة سطوع الشاشة"],0,"يجب مراجعة إعدادات الشبكات والبوابة ومسار انتقال البيانات."],
+["ما الدور الأساسي للموجّه (Router) عند ربط شبكات مختلفة؟",["توجيه حزم البيانات بين الشبكات","عرض الصور","تخزين ملفات المستخدمين فقط","زيادة حجم الشاشة"],0,"الموجّه يحدد المسار المناسب لنقل البيانات بين الشبكات."],
+["تحتاج شبكة داخلية إلى الاتصال بشبكة أخرى مع تنظيم حركة البيانات. لماذا لا يكفي مجرد وجود كابل؟",["لأن الاتصال يحتاج إعدادات وعناوين وأجهزة مناسبة","لأن الكابل لا ينقل أي بيانات","لأن الشبكات لا تتصل ببعضها","لأن كل جهاز يحتاج شاشة جديدة"],0,"الربط يتطلب توافق الوسائط والإعدادات والعناوين وآليات التوجيه."],
+["إذا كانت شبكة فرع المدرسة تعمل محلياً لكن لا تصل إلى الشبكة الخارجية، فأي نقطة تستحق الفحص؟",["إعداد البوابة والموجّه والاتصال الخارجي","دقة الطابعة","لغة لوحة المفاتيح","اسم المجلد"],0,"قد يكون الخلل في الموجّه أو البوابة أو وصلة الاتصال الخارجية."],
+["لماذا ينبغي التخطيط لعناوين الشبكات عند ربط أكثر من شبكة؟",["لتنظيم الاتصال وتجنب تعارض العناوين","لجعل أسماء الأجهزة متشابهة","لإلغاء الحاجة إلى أجهزة الربط","لزيادة عدد الطابعات"],0,"التخطيط الصحيح للعناوين يسهل توجيه البيانات ويقلل التعارض."],
+["اقترح طالب ربط فرعين بعيدين باستخدام شبكة محلية قصيرة داخل كل فرع فقط. ما تقييمك؟",["الحل غير كافٍ؛ يلزم اتصال يربط الفرعين عبر المسافة","الحل صحيح مهما كانت المسافة","يجب حذف الشبكتين","لا حاجة لأي اتصال"],0,"الشبكة المحلية تغطي نطاقاً محدوداً، لذا يلزم حل اتصال بين الموقعين."]
+]},
+{title:"أمن الشبكات",icon:"🛡️",qs:[
+["وصلت رسالة تطلب من الطالب إدخال كلمة مرور حساب المدرسة عبر رابط مجهول. ما التصرف الأكثر أماناً؟",["فتح الرابط فوراً","عدم إدخال البيانات والتحقق من مصدر الرسالة","إرسال كلمة المرور لصديق","إعادة نشر الرابط"],1,"قد تكون محاولة تصيد؛ يجب التحقق من المصدر وعدم مشاركة بيانات الدخول."],
+["ما الإجراء الأقوى لحماية شبكة المدرسة من الدخول غير المصرح به؟",["استخدام كلمة مرور قوية وتغيير الافتراضية وتحديد الصلاحيات","ترك كلمة المرور فارغة","مشاركة كلمة المرور مع الجميع","تعطيل الحماية"],0,"كلمات المرور القوية وإدارة الصلاحيات تقللان فرص الوصول غير المصرح به."],
+["لاحظ مسؤول الشبكة اتصال جهاز غير معروف بالشبكة اللاسلكية. ما الخطوة الأولى المناسبة؟",["تجاهل الأمر","التحقق من الجهاز وتأمين الشبكة وتغيير بيانات الدخول عند الحاجة","إرسال كلمة مرور الشبكة للجميع","إيقاف النسخ الاحتياطي"],1,"ينبغي التحقق من الجهاز واتخاذ إجراءات لمنع أي وصول غير مصرح به."],
+["لماذا تُعد تحديثات البرامج والأجهزة مهمة لأمن الشبكات؟",["قد تعالج ثغرات أمنية معروفة","تغير شكل سطح المكتب فقط","تمنع الحاجة إلى كلمات المرور","تزيد عدد المستخدمين تلقائياً"],0,"التحديثات قد تسد ثغرات يمكن استغلالها في الهجمات."],
+["موظف يستخدم كلمة المرور نفسها في جميع حساباته. ما الخطر الأكبر؟",["إذا كُشفت في خدمة واحدة فقد تتعرض حسابات أخرى للخطر","لن يستطيع تسجيل الدخول","ستصبح الشبكة أسرع","لن تتأثر أي حسابات"],0,"إعادة استخدام كلمة المرور توسع أثر تسربها إلى خدمات أخرى."],
+["أي سلوك يقلل خطر البرمجيات الضارة على أجهزة الشبكة؟",["تنزيل مرفقات مجهولة","تثبيت البرامج من مصادر موثوقة واستخدام الحماية والتحديثات","تعطيل برنامج الحماية","فتح كل الروابط"],1,"المصادر الموثوقة والحماية والتحديثات تقلل مخاطر البرمجيات الضارة."],
+["تحتاج المدرسة إلى إتاحة ملفات للمعلمين فقط. ما الإعداد المناسب؟",["منح صلاحيات الوصول حسب الدور","جعل الملفات عامة","إرسال نسخة للجميع","إلغاء كلمات المرور"],0,"مبدأ أقل صلاحية يتيح لكل مستخدم ما يحتاجه فقط."],
+["اكتشف طالب أنه شارك كلمة مرور الشبكة في مجموعة عامة. ماذا ينبغي أن يفعل؟",["عدم فعل شيء","إبلاغ المسؤول وتغيير كلمة المرور واتخاذ إجراءات الحماية","حذف المجموعة فقط","إعطاء كلمة المرور لأشخاص آخرين"],1,"ينبغي التعامل مع كلمة المرور على أنها مكشوفة وإبلاغ المسؤول وتغييرها."]
+]},
+{title:"تحدي الوحدة – ماذا تعلمت؟",icon:"🏆",qs:[
+["مختبر يضم 20 جهازاً يحتاج إلى مشاركة الملفات والطابعة، مع حماية ملفات الإدارة. ما الخطة الأفضل؟",["شبكة محلية مع مشاركة منظمة وصلاحيات وصول","شبكة مفتوحة بلا كلمات مرور","منع جميع الأجهزة من الاتصال","توصيل كل جهاز بطابعة منفصلة"],0,"الخطة تجمع بين مشاركة الموارد وتنظيم الوصول وحماية الملفات."],
+["قبل تركيب شبكة جديدة، أي تسلسل عمل أكثر منطقية؟",["تحديد الاحتياج ثم تصميم الشبكة ثم اختبارها ثم تنفيذها","شراء الأجهزة ثم معرفة الحاجة","التوصيل العشوائي ثم التخمين","إلغاء الاختبار"],0,"التخطيط والتصميم والاختبار قبل التنفيذ يقلل الأخطاء والتكلفة."],
+["أثناء محاكاة شبكة، فشل اتصال جهاز واحد فقط. ما الاستنتاج الأولي الأفضل؟",["افحص إعداد الجهاز وتوصيله قبل افتراض تعطل الشبكة كلها","احذف الشبكة بالكامل","غيّر كل العناوين عشوائياً","أوقف المحاكي"],0,"حصر المشكلة في الجهاز المتأثر يساعد على التشخيص المنظم."],
+["فرعان في مدينتين يريدان تبادل البيانات. أي مجموعة اعتبارات يجب أن يدرسها مسؤول الشبكة؟",["وسيلة الربط والعناوين والتوجيه والأمن","ألوان الشاشات فقط","عدد لوحات المفاتيح فقط","نوع الأثاث"],0,"الربط البعيد يتطلب اختيار وسيلة اتصال وإعداد توجيه وعناوين وحماية."],
+["تلقى موظف ملفاً من مصدر غير معروف، ويطلب الملف تفعيل وحدات ماكرو. ما القرار الآمن؟",["تفعيلها مباشرة","عدم تفعيلها والتحقق من المصدر وفق سياسة المؤسسة","إرسال الملف لكل الموظفين","تعطيل الحماية"],1,"قد تُستخدم الملفات مجهولة المصدر لنشر برمجيات ضارة."],
+["أرادت المدرسة معرفة سبب بطء الشبكة. ما الإجراء الأفضل كبداية؟",["جمع معلومات عن الأجهزة والاتصالات ومكان حدوث البطء ثم اختبار الاحتمالات","استبدال جميع الأجهزة فوراً","تغيير كلمات المرور فقط","إلغاء الشبكة"],0,"التشخيص يبدأ بجمع معلومات وتحديد نطاق المشكلة قبل اتخاذ قرار مكلف."],
+["طالب يقترح استخدام شبكة لاسلكية مفتوحة لتسهيل دخول الجميع. ما تقييمك؟",["مريحة لكنها تعرض الشبكة لمخاطر؛ ينبغي تأمينها وتحديد الوصول","أفضل حل دائماً","لا يمكن اختراق الشبكات المفتوحة","لا تحتاج إلى إدارة"],0,"سهولة الاستخدام لا تعني الأمان؛ يجب حماية الشبكة اللاسلكية."],
+["إذا نجح تصميم الشبكة في المحاكي ثم ظهرت مشكلة بعد التنفيذ، فما التصرف العلمي؟",["مقارنة الواقع بالنموذج وفحص التوصيلات والإعدادات تدريجياً","إلقاء اللوم على البرنامج فوراً","إلغاء جميع إعدادات الحماية","تجاهل المشكلة"],0,"المقارنة المنظمة بين التصميم والتنفيذ تكشف الاختلافات ومصدر الخلل."]
+]}
+];
+let studentName="",className="",stageIndex=0,qIndex=0,score=0,right=0,answered={},stageScores=stages.map(()=>({points:0,right:0})),stageBonus={},finished=false;
+const $=id=>document.getElementById(id), arab=n=>String(n).replace(/\d/g,d=>"٠١٢٣٤٥٦٧٨٩"[+d]);
+function show(id){["start","game","result","board"].forEach(x=>$(x).classList.toggle("hidden",x!==id))}
+function startGame(){studentName=$("student").value.trim();if(!studentName){alert("يرجى كتابة اسم الطالب أولاً.");return}className=$("classroom").value.trim();stageIndex=0;qIndex=0;score=0;right=0;answered={};stageScores=stages.map(()=>({points:0,right:0}));stageBonus={};finished=false;$("studentLabel").textContent=studentName;show("game");render()}
+function key(){return stageIndex+"-"+qIndex}
+function render(){let s=stages[stageIndex],q=s.qs[qIndex],a=answered[key()];$("stageLabel").textContent=(stageIndex+1)+" / ٥ · "+s.title;$("typeLabel").textContent=q[3].length>95?"تحدي تفكير وتحليل":"موقف تطبيقي";$("question").textContent=q[0];$("qnumber").textContent=arab(qIndex+1)+" / "+arab(s.qs.length);$("score").textContent=arab(score);$("rightCount").textContent=arab(right);let done=Object.keys(answered).length,total=stages.reduce((x,y)=>x+y.qs.length,0);$("progressText").textContent=arab(Math.round(done/total*100))+"٪";$("progress").style.width=(done/total*100)+"%";
+$("answers").innerHTML="";q[1].forEach((v,i)=>{let b=document.createElement("button");b.className="answer";b.textContent=["أ","ب","ج","د"][i]+" · "+v;b.disabled=!!a;if(a){if(i===q[2])b.classList.add("correct");else if(i===a.choice)b.classList.add("wrong")}else b.onclick=()=>choose(i);$("answers").appendChild(b)});
+let fb=$("feedback");if(a){fb.className="feedback show "+(a.ok?"good":"bad");fb.textContent=(a.ok?"إجابة صحيحة! +"+a.earned+" نقطة. ":"إجابة غير صحيحة. ") + q[3]}else{fb.className="feedback";fb.textContent=""}
+$("next").disabled=!a;$("next").textContent=(stageIndex===4&&qIndex===7)?"إنهاء اللعبة":(qIndex===7?"المرحلة التالية ←":"السؤال التالي ←");$("prev").disabled=stageIndex===0&&qIndex===0;renderMap()}
+function choose(i){let q=stages[stageIndex].qs[qIndex],ok=i===q[2],earned=ok?(q[3].length>95?20:10):0;answered[key()]={choice:i,ok,earned};if(ok){score+=earned;right++;stageScores[stageIndex].points+=earned;stageScores[stageIndex].right++}render()}
+function nextQuestion(){if(!answered[key()])return;if(qIndex<7){qIndex++;render();return}if(stageIndex<4){if(!stageBonus[stageIndex]){score+=20;stageScores[stageIndex].points+=20;stageBonus[stageIndex]=true}stageIndex++;qIndex=0;render();return}finish()}
+function previousQuestion(){if(qIndex>0)qIndex--;else if(stageIndex>0){stageIndex--;qIndex=7}render()}
+function renderMap(){$("stageMap").innerHTML=stages.map((s,i)=>`<div class="stage ${i===stageIndex?"current":i<stageIndex?"done":""}"><div class="num">${s.icon}</div><strong>${s.title}</strong><small>${stageScores[i].right} / ٨ إجابات صحيحة · ${stageScores[i].points} نقطة</small></div>`).join("")}
+function finish(){finished=true;let total=stages.reduce((a,s)=>a+s.qs.length,0),pct=Math.round(right/total*100),medals=pct>=90?3:pct>=70?2:pct>=50?1:0;if(medals===3)score+=50;let record={name:studentName,cls:className,score,right,total,pct,medals,date:new Date().toLocaleString("ar-OM"),details:stageScores};let rows=loadBoard();rows.push(record);localStorage.setItem("net9_results",JSON.stringify(rows));$("resultName").textContent="الطالب: "+studentName+(className?" · "+className:"");$("finalScore").textContent=arab(score);$("finalRight").textContent=arab(right);$("finalTotal").textContent=arab(total);$("finalPercent").textContent=arab(pct)+"٪";$("finalMedals").textContent=arab(medals);$("medal").textContent=medals===3?"🥇🏆🥇":medals===2?"🥈🏆":"🏅";$("stageResults").innerHTML=stages.map((s,i)=>`<tr><td>${s.title}</td><td>${arab(stageScores[i].right)} / ٨</td><td>${arab(stageScores[i].points)}</td></tr>`).join("")+(medals===3?`<tr><td>مكافأة إكمال متميز</td><td>—</td><td>+٥٠</td></tr>`:"");show("result")}
+function loadBoard(){try{return JSON.parse(localStorage.getItem("net9_results")||"[]")}catch(e){return []}}
+function showBoard(){let rows=loadBoard().sort((a,b)=>b.score-a.score);$("boardCount").textContent=arab(rows.length);$("boardTop").textContent=arab(rows.length?rows[0].score:0);$("boardSum").textContent=arab(rows.reduce((a,r)=>a+r.score,0));$("boardAvg").textContent=arab(rows.length?Math.round(rows.reduce((a,r)=>a+r.score,0)/rows.length):0);$("boardRows").innerHTML=rows.map((r,i)=>`<tr><td>${arab(i+1)}</td><td>${escapeHTML(r.name)}</td><td>${escapeHTML(r.cls||"—")}</td><td>${arab(r.score)}</td><td>${arab(r.pct)}٪</td><td>${escapeHTML(r.date)}</td></tr>`).join("")||'<tr><td colspan="6">لا توجد نتائج مسجلة بعد.</td></tr>';show("board")}
+function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function exportCSV(){let rows=loadBoard();if(!rows.length){alert("لا توجد نتائج لتصديرها.");return}let data=[["الترتيب","اسم الطالب","الصف والشعبة","النقاط","الإجابات الصحيحة","النسبة","التاريخ"],...rows.sort((a,b)=>b.score-a.score).map((r,i)=>[i+1,r.name,r.cls,r.score,r.right,r.pct+"%",r.date])];let csv="\uFEFF"+data.map(row=>row.map(x=>'"'+String(x??"").replace(/"/g,'""')+'"').join(",")).join("\r\n");let blob=new Blob([csv],{type:"text/csv;charset=utf-8"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="نتائج_مغامرة_الشبكات.csv";a.click();URL.revokeObjectURL(url)}
+function clearBoard(){if(confirm("هل أنت متأكد من مسح سجل جميع النتائج من هذا الجهاز؟")){localStorage.removeItem("net9_results");showBoard()}}
+function newStudent(){$("student").value="";$("classroom").value="";show("start")}
+function backHome(){show("start")}
+</script>
+</body>
+</html>
